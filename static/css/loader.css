@@ -1,0 +1,35 @@
+.bot-loader, .bot-loader:before, .bot-loader:after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: bblFadInOut 1.8s infinite ease-in-out;
+  }
+  .bot-loader {
+    color: #ff555f;
+    font-size: 5px;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+    margin-left: 20px;
+  }
+  .bot-loader:before,
+  .bot-loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+  .bot-loader:before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+  }
+  .bot-loader:after {
+    left: 3.5em;
+  }
+  
+  @keyframes bblFadInOut {
+    0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+    40% { box-shadow: 0 2.5em 0 0 }
+  }
+      

@@ -1,0 +1,44 @@
+.example-div{
+    padding: 10px 0px 10px 10px;
+    background-color: #e4dddd75;
+
+}
+
+.example-btn{
+    background-color: #ff555f;
+    border-radius: 16px;
+    padding: 6px;
+    border: none;
+    box-shadow: 2px 3px dimgrey;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.example-btn:hover{
+    box-shadow: 0px 1px 5px 1px dimgrey;
+}
+
+.example-btn[disabled] {
+    box-shadow: 2px 3px dimgrey;
+  }
+
+.like-btn-parent{
+    display: flex;
+    padding: 5px 0px 0px 10px;
+    column-gap: 8px;
+    flex-direction: column;
+}
+
+.like-btn{
+    width: 25px;
+    height: 25px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.like-btn:hover{
+    border: 1px solid lightgrey;
+    cursor: pointer;
+}
