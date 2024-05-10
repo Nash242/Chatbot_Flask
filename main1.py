@@ -264,7 +264,7 @@ def runmain(user_que):
             user_que=question.split(" Answer in step by step points only")[0]
         else:
             return answer['output_text']
-        unanswered_phrases = ["I don't know.", "I don't have much information", "I don't have any information", "I'm unable to provide an answer","I don't have enough information to answer that question.", "I don't have information about in the provided context."]  # Add more phrases if needed
+        unanswered_phrases = ["I don't know.", "I don't have much information", "I don't have any information", "I'm unable to provide an answer","I don't have enough information to answer that question.", "I don't have information about in the provided context.", "I don't have"]  # Add more phrases if needed
         if any(phrase in answer.get('output_text', '') for phrase in unanswered_phrases):
             unanswered_question = f"Unanswered question: {question}\n"
             log_file_path = "log.txt"
