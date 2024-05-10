@@ -250,12 +250,15 @@ def runmain(user_que):
     # qa_chain = load_qa_chain(llm, chain_type="stuff")
     user_question =user_que #user input
     if user_question:
+        if (user_question.lower().strip() in ['hi','hello','good morning','good afternoon','good evening','Hi']):
+            answer = "Hello! How can I Help you?"
+            return answer
         matching_docs = vectordb.similarity_search_with_score(user_question, k=3)
         #print(matching_docs)
         top1 = rerank_top_n(user_question,matching_docs,2)
         prompt = f"Answer the provided Question \nQuestion: {user_question}. \nIn step by step manner from the given context only \nContext:{top1}\nIf you don't know the answer then say 'Please rephrase the question?'."
         answer = llm.invoke(prompt)
-        print(answer)
+        #print(answer)
         
         return answer.content
         
