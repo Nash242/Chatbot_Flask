@@ -180,6 +180,13 @@ def create_vectors(persist_directory, directory, docs):
         
         return vectordb
 
+os.environ["OPENAI_API_KEY"] = "Your OpenAI API Key"
+directory = "contents"
+persist_directory = "chroma_db"    
+documents = load_docs(directory)
+docs = split_docs(documents)
+vectordb = create_vectors(persist_directory, directory, docs)
+
 # Route for GET requests
 @app.route('/', methods=['GET','POST'])
 def get_route():
@@ -237,12 +244,6 @@ def write_to_second_csv():
 
 def runmain(user_que):
     print('in runMAIN')
-    os.environ["OPENAI_API_KEY"] = "Your OpenAI API Key"
-    directory = "contents"
-    persist_directory = "chroma_db"    
-    documents = load_docs(directory)
-    docs = split_docs(documents)
-    vectordb = create_vectors(persist_directory, directory, docs)
     llm_model = "gpt-3.5-turbo"
     llm = ChatOpenAI(temperature=0.1, model=llm_model)    
     qa_chain = load_qa_chain(llm, chain_type="stuff")
