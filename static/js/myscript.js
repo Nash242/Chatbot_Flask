@@ -1,5 +1,5 @@
 var i = 0;
-var speed = 50;
+var speed = 40;
 
 function addexample(){
     clicked=true
@@ -8,26 +8,40 @@ function addexample(){
                          </li>`)
     $(".chatbox").append(`<li class="chat incoming" id="example-ans" style="">
                                <span class="material-symbols-outlined">smart_toy</span>
-                                <div>
-                                1 . Click on the 'Raise new request' button located on the top right of the page. <br>
-                                2 . Enter the OHR and click anywhere outside the field box.<br>
-                                3 . The email will auto-populate once the OHR is entered.<br>
-                                4 . The 'Read' option is set to Read-only by default for security access.<br>
-                                5 . Choose the type of data access you need for the dashboard (Financial, Non-Financial, Sales).<br>
-                                6 . Based on the type selected, fill in the corresponding Security Types and Security Values.<br>
-                                7 . Ensure all Security Types and their values are filled in. If you need access to all values under a specific type, choose 'ALL'.<br>
-                                8 . For Financial information, select Actuals/Outlook/OP Plan.<br>
-                                9 . For Non-Financial information, select Headcount (Genpact and contractors) and Recruitment.<br>
-                                10 . For Sales information, select Inflow, Booking, and Pipeline details.<br>
-                                Similarly You can ask the question in the below provided chat input. </div>
+                               <div>
+                                  <div class="bot-response"></div>
+                                </div>
                          </li>`)                  
     
+    let txt2=`1 . Click on the 'Raise new request' button located on the top right of the page.\n2 . Enter the OHR and click anywhere outside the field box.\n3 . The email will auto-populate once the OHR is entered.\n4 . The 'Read' option is set to Read-only by default for security access.\n5 . Choose the type of data access you need for the dashboard (Financial, Non-Financial, Sales).\n6 . Based on the type selected, fill in the corresponding Security Types and Security Values.\n7 . Ensure all Security Types and their values are filled in. If you need access to all values under a specific type, choose 'ALL'.\n8 . For Financial information, select Actuals/Outlook/OP Plan.\n9 . For Non-Financial information, select Headcount (Genpact and contractors) and Recruitment.\n10 . For Sales information, select Inflow, Booking, and Pipeline details.\nSimilarly You can ask the question in the below provided chat input.\n`              
+    typeWriter(txt2.replace(/\n/g,"<br>"),typingSpeed = 40)
 
     $('.example-btn').prop('disabled', true).css({
         'background-color': '#e6878d',
         'color': 'black'
     });
 }
+
+function typeWriter(text,typingSpeed = 40) {
+    console.log(text);
+    let ele=document.getElementsByClassName("bot-response")
+    let previoustext=ele[ele.length-1].innerHTML
+    let displayedText = "";
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+       // console.log('i',i);
+        displayedText =previoustext + text.substring(0, i + 1);
+        ele[ele.length-1].innerHTML = displayedText;
+        i++;
+        if(i== text.length){
+            $('.like-btn-parent').last().css('display', 'block');
+        }
+        setTimeout(type, typingSpeed);
+      }
+    }
+    type();
+  }
 
 function like(){
     var lastOutgoingText = $('.u-question:last').text().trim();
@@ -90,24 +104,4 @@ function realtime_datetime (){
 }
 
 
-// function typeWriter(txt) {
-//     if (i < txt.length) {
-//         let ele=document.getElementsByClassName("incoming")
-//         ele[ele.length-1].innerHTML += txt.charAt(i)+txt.charAt(i+1)+txt.charAt(i+2);
-//         i+=3;
-//         setTimeout(typeWriter(txt), speed);
-//     }
-// }
-function typeWriter(txt) {
-    if (i < txt.length) {
-        let ele = document.getElementsByClassName("incoming");
-        ele[ele.length - 1].innerHTML += txt.charAt(i) + txt.charAt(i + 1) + txt.charAt(i + 2);
-        if (txt.charAt(i) === '\n') {
-            ele[ele.length - 1].appendChild(document.createElement('br'));
-        }
-        i += 3;
-        setTimeout(function() {
-            typeWriter(txt);
-        }, speed);
-    }
-}
+
