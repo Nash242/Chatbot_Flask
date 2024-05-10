@@ -8,6 +8,13 @@
   font-family: "Poppins", sans-serif;
 }
 
+.bot-response {
+  /* overflow: hidden; */
+  width: 350px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
 .chatbot-toggler {
   position: fixed;
   bottom: 20px;
@@ -111,6 +118,9 @@ header h2 {
   /* background: #00aecf52;
   padding: 5px;
   border-radius: 5px 5px 0px 5px; */
+}
+.chatbox .incoming {
+  padding-top: 10px;
 }
 .chatbox .incoming span {
   width: 24px;
